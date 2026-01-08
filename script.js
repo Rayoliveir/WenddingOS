@@ -1,3 +1,27 @@
+// --- CONFIGURAÇÃO DE ACESSO ---
+const SENHA_MESTRE = "casamento2024"; // ALTERE AQUI SUA SENHA
+
+function checkPassword() {
+    const input = document.getElementById('app-password').value;
+    if (input === SENHA_MESTRE) {
+        sessionStorage.setItem('wedding_auth', 'true');
+        document.getElementById('login-screen').style.display = 'none';
+    } else {
+        const errorMsg = document.getElementById('login-error');
+        errorMsg.style.display = 'block';
+    }
+}
+
+// Verifica se já está logado ao carregar a página
+function verifyAuth() {
+    if (sessionStorage.getItem('wedding_auth') === 'true') {
+        document.getElementById('login-screen').style.display = 'none';
+    }
+}
+
+// Adicione a chamada da verificação no final do seu script ou no início
+verifyAuth();
+
 // CONFIGURAÇÃO SUPABASE
 const SUPABASE_URL = 'https://axzjdtxnvvvhpqkktbtn.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_BhfbqDgtbPIxvP6C4UCn1Q_JtgZKJy4';
@@ -241,4 +265,5 @@ function exportToCSV() {
 }
 
 // Inicia o sistema carregando do banco
+
 loadData();
