@@ -1,5 +1,5 @@
 // --- CONFIGURAÇÃO DE ACESSO ---
-const SENHA_MESTRE = "casamento2024"; // ALTERE AQUI SUA SENHA
+const SENHA_MESTRE = "luma2026"; // ALTERE AQUI SUA SENHA
 
 function checkPassword() {
     const input = document.getElementById('app-password').value;
@@ -267,3 +267,4 @@ function exportToCSV() {
 // Inicia o sistema carregando do banco
 
 loadData();
+
