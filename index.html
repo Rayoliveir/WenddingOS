@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeddingOS | Smart Planning</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo-icon"><i data-lucide="sparkles"></i></div>
+                <span>WeddingOS</span>
+            </div>
+            <nav class="side-nav">
+                <button class="nav-item active" onclick="showTab('convidados', this)">
+                    <i data-lucide="users"></i> Convidados
+                </button>
+                <button class="nav-item" onclick="showTab('convites', this)">
+                    <i data-lucide="mail"></i> Convites
+                </button>
+                <button class="nav-item" onclick="showTab('buffet', this)">
+                    <i data-lucide="bar-chart-3"></i> Orçamento
+                </button>
+                <button class="nav-item" onclick="showTab('pagamentos', this)">
+                    <i data-lucide="credit-card"></i> Pagamentos
+                </button>
+                <button class="nav-item" onclick="showTab('tarefas', this)">
+                    <i data-lucide="check-square"></i> Cronograma
+                </button>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="btn-export-alt" onclick="exportToCSV()">
+                    <i data-lucide="download"></i> Exportar Dados
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-titles">
+                    <h1 id="page-title">Gestão de Convidados</h1>
+                    <p class="subtitle">Controle operacional e financeiro</p>
+                </div>
+                <div class="header-stats">
+                    <div class="stat-pill">
+                        <small>Total Orçado</small>
+                        <span id="dash-orcamento">R$ 0,00</span>
+                    </div>
+                    <div class="stat-pill highlight">
+                        <small>Total Pago</small>
+                        <span id="dash-pago">R$ 0,00</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-scroll">
+                <section id="convidados" class="tab-content active">
+                    <div class="glass-card">
+                        <h3>Novo Convidado</h3>
+                        <div class="modern-input-group">
+                            <input type="text" id="guest-name" placeholder="Nome completo">
+                            <select id="guest-type">
+                                <option value="adulto">Adulto</option>
+                                <option value="crianca">Criança (50%)</option>
+                            </select>
+                            <button onclick="addGuest()" class="btn-primary">Adicionar</button>
+                        </div>
+                    </div>
+                    <div class="data-grid" id="guest-list"></div>
+                </section>
+
+                <section id="convites" class="tab-content">
+                    <div class="stats-row">
+                        <div class="glass-card stat-card">
+                            <small>Progresso de Entrega</small>
+                            <h2 id="convite-stats">0 / 0</h2>
+                            <div class="progress-container"><div id="convite-progress-bar" class="progress-bar"></div></div>
+                        </div>
+                    </div>
+                    <div class="data-grid" id="invite-list"></div>
+                </section>
+
+                <section id="buffet" class="tab-content">
+                    <div class="glass-card actions-bar">
+                        <button onclick="addSection()" class="btn-primary">Adicionar Nova Seção</button>
+                    </div>
+                    <div id="secoes-orcamento"></div>
+                </section>
+
+                <section id="pagamentos" class="tab-content">
+                    <div id="lista-pagamentos"></div>
+                </section>
+
+                <section id="tarefas" class="tab-content">
+                    <div class="glass-card">
+                        <h3>Checklist</h3>
+                        <div class="modern-input-group">
+                            <input type="text" id="task-name" placeholder="Descreva a tarefa...">
+                            <button onclick="addTask()" class="btn-primary">Criar</button>
+                        </div>
+                    </div>
+                    <div class="task-grid" id="task-list"></div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+</body>
+</html>
